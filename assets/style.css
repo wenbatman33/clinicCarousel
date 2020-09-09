@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background: #000;
-  font-family: "SF Pro TC", "SF Pro Display", "SF Pro Icons", "PingFang TC", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
+  font-family: 'SF Pro TC', 'SF Pro Display', 'SF Pro Icons', 'PingFang TC', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
 
 #app {
   width: 100%;

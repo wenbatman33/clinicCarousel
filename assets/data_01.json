@@ -1,7 +1,7 @@
 {
 "data": [
 		{
-			"SCD_VISITDT": "yyyymmdd",   
+			"SCD_VISITDT": "yyyymmdd",
 			"SHI_SHIFTNO" : "1",
 			"SHI_EASYNAME": "早上",
 			"SEC_SENAME": "小兒科",
