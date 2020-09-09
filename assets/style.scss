@@ -1,91 +1,91 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
-  background: #000;
+	margin: 0;
+	padding: 0;
+	background: #000;
 }
 
 #app {
-  width: 480px;
-  height: 540px;
-  background: #000;
+	width: 480px;
+	height: 540px;
+	background: #000;
 }
 
 .department {
-  text-align: center;
-  height: 65px;
-  line-height: 65px;
-  font-size: 2rem;
-  color: #fff;
-  background: #14D2DA;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.5rem;
+	color: #fff;
+	background: #14d2da;
 }
 
 .doctor {
-  height: 65px;
-  line-height: 65px;
-  font-size: 2rem;
-  color: #fff;
-  text-align: center;
-  background: #13B4B8;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.5rem;
+	color: #fff;
+	text-align: center;
+	background: #13b4b8;
 }
 
 .clinic {
-  height: 65px;
-  line-height: 65px;
-  font-size: 2rem;
-  color: #fff;
-  text-align: center;
-  background: #109292;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.5rem;
+	color: #fff;
+	text-align: center;
+	background: #109292;
 }
 
 .patient {
-  color: #fff;
-  background: #000;
+	color: #fff;
+	background: #000;
 
-  .patientUL {
-    margin: 0;
-    padding: 0;
-  }
+	.patientUL {
+		margin: 0;
+		padding: 0;
+	}
 }
 
-
 .patientItem {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 3rem;
-  color: #fff;
-  background: #000;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 1.5rem;
+	color: #fff;
+	background: #000;
 
-  .id {
-    width: 100px;
-  }
+	.id {
+		width: 100px;
+	}
 
-  .name {
-    letter-spacing: 16px;
-  }
+	.name {
+		letter-spacing: 16px;
+	}
 }
 
 @for $i from 1 through 5 {
-  .patientItem {
-    &:nth-child(#{$i}) {
-      animation: fadeIn ease $i * 0.3s;
-    }
-  }
+	.patientItem {
+		&:nth-child(#{$i}) {
+			animation: fadeIn ease $i * 0.3s;
+		}
+	}
 }
 
-
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
+	0% {
+		opacity: 0;
+	}
 
-  30% {
-    opacity: 0;
-  }
+	30% {
+		opacity: 0;
+	}
 
-  100% {
-    opacity: 1;
-  }
+	100% {
+		opacity: 1;
+	}
 }
