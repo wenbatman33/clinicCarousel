@@ -1,9 +1,10 @@
 $(function () {
-	var baseUrl = ' http://61.220.95.146:3000';
-	var patientList = '';
-	var patientLength = 0;
+	var baseUrl = 'http://61.220.95.146:3000';
+	var patientList;
+	var patientAll = 0;
 	var current = 0;
 	var renderItems = 5;
+	var timer;
 	var loopTime = 5000;
 
 	function getData() {
@@ -21,15 +22,13 @@ $(function () {
 
 	function step2(res) {
 		patientList = res.data;
-		patientLength = res.data.length;
-		console.log(patientLength);
+		patientAll = res.data.length;
 		loop(current);
 	}
 
 	function loop(num) {
 		var len = num + renderItems;
 		var element = '';
-		console.log(patientList);
 		for (i = num; i < len; i++) {
 			if (patientList[i]) {
 				element += '<li class="patientItem">';
@@ -39,13 +38,16 @@ $(function () {
 			}
 		}
 		$('.patientUL').html(element);
-		if (current >= patientLength) {
+
+		if (current >= patientAll) {
 			current = 0;
+			clearTimeout(timer);
+			//  讀取列表尾端時結重新取資料
 			getData();
 		} else {
 			current += renderItems;
 		}
-		setTimeout(() => {
+		timer = setTimeout(() => {
 			loop(current);
 		}, loopTime);
 	}
