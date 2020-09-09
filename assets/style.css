@@ -1,0 +1,119 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  user-select: none;
+}
+
+#app {
+  width: 480px;
+  height: 540px;
+  background: #000;
+}
+
+.department {
+  text-align: center;
+  height: 65px;
+  line-height: 65px;
+  font-size: 2rem;
+  color: #fff;
+  background: #14d2da;
+}
+
+.doctor {
+  height: 65px;
+  line-height: 65px;
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  background: #13b4b8;
+}
+
+.clinic {
+  height: 65px;
+  line-height: 65px;
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  background: #109292;
+}
+
+.patient {
+  color: #fff;
+  background: #000;
+}
+.patient .patientUL {
+  margin: 0;
+  padding: 0;
+}
+
+.patientItem {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 3rem;
+  color: #fff;
+  background: #000;
+}
+.patientItem .id {
+  width: 100px;
+}
+.patientItem .name {
+  letter-spacing: 16px;
+}
+
+.patientItem:nth-child(1) {
+  -webkit-animation: fadeIn ease 0.3s;
+  animation: fadeIn ease 0.3s;
+}
+
+.patientItem:nth-child(2) {
+  -webkit-animation: fadeIn ease 0.6s;
+  animation: fadeIn ease 0.6s;
+}
+
+.patientItem:nth-child(3) {
+  -webkit-animation: fadeIn ease 0.9s;
+  animation: fadeIn ease 0.9s;
+}
+
+.patientItem:nth-child(4) {
+  -webkit-animation: fadeIn ease 1.2s;
+  animation: fadeIn ease 1.2s;
+}
+
+.patientItem:nth-child(5) {
+  -webkit-animation: fadeIn ease 1.5s;
+  animation: fadeIn ease 1.5s;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

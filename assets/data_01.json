@@ -1,0 +1,33 @@
+{
+"data": [
+		{
+			"SCD_VISITDT": "yyyymmdd",    
+			"SHI_SHIFTNO" : "1",        
+			"SHI_EASYNAME": "早上",
+			"SEC_SENAME": "小兒科",
+			"SCD_ROOMNO": "0001",
+			"ROM_RONAME": "一診",
+			"EMP_EMPNAME": "謝欣洋"
+		},
+		{
+			"SCD_VISITDT": "yyyymmdd",
+			"SHI_SHIFTNO" : "2",
+			"SHI_EASYNAME": "下午",
+			"SEC_SENAME": "小兒科",
+			"SCD_ROOMNO": "0001",
+			"ROM_RONAME": "一診",
+			"EMP_EMPNAME": "謝欣洋"
+		},
+		{
+			"SCD_VISITDT": "yyyymmdd",
+			"SHI_SHIFTNO" : "3",
+			"SHI_EASYNAME": "夜診",
+			"SEC_SENAME": "小兒科",
+			"SCD_ROOMNO": "0001",
+			"ROM_RONAME": "一診",
+			"EMP_EMPNAME": "謝欣洋"
+		}
+	],
+	"httpStatus": 0,
+	"code": 0 
+}
