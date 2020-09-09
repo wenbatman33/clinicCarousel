@@ -14,16 +14,16 @@ body {
 
 .department {
 	text-align: center;
-	height: 65px;
-	line-height: 65px;
+	height: 48px;
+	line-height: 48px;
 	font-size: 2rem;
 	color: #fff;
 	background: #14d2da;
 }
 
 .doctor {
-	height: 65px;
-	line-height: 65px;
+	height: 48px;
+	line-height: 48px;
 	font-size: 2rem;
 	color: #fff;
 	text-align: center;
@@ -31,8 +31,8 @@ body {
 }
 
 .clinic {
-	height: 65px;
-	line-height: 65px;
+	height: 48px;
+	line-height: 48px;
 	font-size: 2rem;
 	color: #fff;
 	text-align: center;
