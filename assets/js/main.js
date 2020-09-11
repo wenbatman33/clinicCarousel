@@ -12,33 +12,21 @@ $(function () {
 	var loopTime = 5000;
 
 	function getRoomData() {
-		// $.get("./assets/data_01.json", {}, function(res) {
-		// $.post(
-		// 	'http://61.220.95.146:3000/Api/GeteEmployeeScheduleDataList',
-		// 	{},
-		// 	function (res) {
-		// 		showRoomData(res);
-		// 	},
-		// 	'json'
-		// ).fail(function () {
-		// 	$('.department').html('尚無資料');
-		// 	$('.doctor').html('尚無資料');
-		// 	$('.clinic').html('尚無資料');
-		// } );
-
 		$.ajax({
+			// --------------------
+			// url: './assets/json/data_01.json',
+			// type: 'get',
+			// --------------------
 			url: 'http://61.220.95.146:3000/Api/GeteEmployeeScheduleDataList',
-			headers: {
-				contentType: 'application/json; charset=utf-8',
-				Accept: 'application/json; charset=utf-8',
-			},
-			type: 'post',
 			data: JSON.stringify({}),
+			type: 'post',
+			// --------------------
 			dataType: 'json',
-			success: function (res) {
-				cshowRoomData(res);
+			contentType: 'application/json;charset=utf-8',
+			success: function (returnData) {
+				showRoomData(returnData);
 			},
-			error: function (error) {
+			error: function (xhr, ajaxOptions, thrownError) {
 				$('.department').html('尚無資料');
 				$('.doctor').html('尚無資料');
 				$('.clinic').html('尚無資料');
@@ -47,35 +35,21 @@ $(function () {
 	}
 
 	function getData() {
-		// $.get('./assets/data_02.json', {}, function (res) {
-		// $.post(
-		// 	'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenDataList',
-		// 	{},
-		// 	function (res) {
-		// 		showData(res);
-		// 	},
-		// 	'json'
-		// ).fail(function () {
-		// 	var element = '';
-		// 	element += '<li class="noData">';
-		// 	element += '<span>尚無資料</span>';
-		// 	element += '</li>';
-		// 	$('.patientUL').html(element);
-		// } );
-
 		$.ajax({
-			url: 'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenDataLis',
-			headers: {
-				contentType: 'application/json; charset=utf-8',
-				Accept: 'application/json; charset=utf-8',
-			},
-			type: 'post',
+			// --------------------
+			// url: './assets/json/data_02.json',
+			// type: 'get',
+			// --------------------
+			url: 'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenDataList',
 			data: JSON.stringify({}),
+			type: 'post',
+			// --------------------
 			dataType: 'json',
-			success: function (res) {
-				showData(res);
+			contentType: 'application/json;charset=utf-8',
+			success: function (returnData) {
+				showData(returnData);
 			},
-			error: function (error) {
+			error: function (xhr, ajaxOptions, thrownError) {
 				var element = '';
 				element += '<li class="noData">';
 				element += '<span>尚無資料</span>';
@@ -112,13 +86,18 @@ $(function () {
 	function showData(res) {
 		patientList = res.data;
 		patientAll = res.data.length;
-		loop(current);
+
+		if (patientAll > 0) {
+			loop(current);
+		} else {
+			noPatient();
+		}
 	}
 
 	function loop(num) {
-		var len = num + renderItems;
+		var persons = num + renderItems;
 		var element = '';
-		for (i = num; i < len; i++) {
+		for (i = num; i < persons; i++) {
 			if (patientList[i]) {
 				element += '<li class="patientItem">';
 				element += '<span class="id">' + patientList[i].OCB_ROOMNO + '</span>';
@@ -127,18 +106,30 @@ $(function () {
 			}
 		}
 		$('.patientUL').html(element);
-
 		if (current >= patientAll) {
 			current = 0;
-			clearTimeout(timer);
 			//  讀取列表尾端時結重新取資料
-			getData();
+			timer = setTimeout(() => {
+				getData();
+				clearTimeout(timer);
+			}, loopTime);
 		} else {
 			current += renderItems;
 		}
 		timer = setTimeout(() => {
 			loop(current);
 		}, loopTime);
+	}
+	function noPatient(num) {
+		// 沒有患者時的顯示方式 10秒後再取資料
+		var len = num + renderItems;
+		var element = '';
+		element += '<li class="noData">目前無人候診</li>';
+		$('.patientUL').html(element);
+		timer = setTimeout(() => {
+			getData();
+			clearTimeout(timer);
+		}, 10000);
 	}
 
 	getData();
