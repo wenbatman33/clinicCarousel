@@ -28,10 +28,13 @@ $(function () {
 
 		$.ajax({
 			url: 'http://61.220.95.146:3000/Api/GeteEmployeeScheduleDataList',
+			headers: {
+				contentType: 'application/json; charset=utf-8',
+				Accept: 'application/json; charset=utf-8',
+			},
 			type: 'post',
+			data: JSON.stringify({}),
 			dataType: 'json',
-			contentType: 'application/json; charset=utf-8',
-			data: {},
 			success: function (res) {
 				cshowRoomData(res);
 			},
@@ -62,10 +65,13 @@ $(function () {
 
 		$.ajax({
 			url: 'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenDataLis',
+			headers: {
+				contentType: 'application/json; charset=utf-8',
+				Accept: 'application/json; charset=utf-8',
+			},
 			type: 'post',
-			dataType: 'json', // 預期從server接收的資料型態
-			contentType: 'application/json; charset=utf-8', // 要送到server的資料型態
-			data: {},
+			data: JSON.stringify({}),
+			dataType: 'json',
 			success: function (res) {
 				showData(res);
 			},
