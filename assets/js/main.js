@@ -1,5 +1,6 @@
 $(function () {
-	var baseUrl = 'http://192.168.1.3:3000';
+	var baseUrl = 'http://61.220.95.146:3000';
+	// var baseUrl = 'http://192.168.1.3:3000';
 	var roomDataList;
 	var roomDataLength;
 	var patientList;
@@ -12,35 +13,69 @@ $(function () {
 
 	function getRoomData() {
 		// $.get("./assets/data_01.json", {}, function(res) {
-		$.post(
-			baseUrl + '/Api/GeteEmployeeScheduleDataList',
-			{},
-			function (res) {
-				showRoomData(res);
+		// $.post(
+		// 	'http://61.220.95.146:3000/Api/GeteEmployeeScheduleDataList',
+		// 	{},
+		// 	function (res) {
+		// 		showRoomData(res);
+		// 	},
+		// 	'json'
+		// ).fail(function () {
+		// 	$('.department').html('尚無資料');
+		// 	$('.doctor').html('尚無資料');
+		// 	$('.clinic').html('尚無資料');
+		// } );
+
+		$.ajax({
+			url: 'http://61.220.95.146:3000/Api/GeteEmployeeScheduleDataList',
+			type: 'post',
+			dataType: 'json',
+			contentType: 'application/json; charset=utf-8',
+			data: {},
+			success: function (res) {
+				cshowRoomData(res);
 			},
-			'json'
-		).fail(function () {
-			$('.department').html('尚無資料');
-			$('.doctor').html('尚無資料');
-			$('.clinic').html('尚無資料');
+			error: function (error) {
+				$('.department').html('尚無資料');
+				$('.doctor').html('尚無資料');
+				$('.clinic').html('尚無資料');
+			},
 		});
 	}
 
 	function getData() {
 		// $.get('./assets/data_02.json', {}, function (res) {
-		$.post(
-			baseUrl + '/Api/GetRegisteredButNotSeenDataList',
-			{},
-			function (res) {
+		// $.post(
+		// 	'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenDataList',
+		// 	{},
+		// 	function (res) {
+		// 		showData(res);
+		// 	},
+		// 	'json'
+		// ).fail(function () {
+		// 	var element = '';
+		// 	element += '<li class="noData">';
+		// 	element += '<span>尚無資料</span>';
+		// 	element += '</li>';
+		// 	$('.patientUL').html(element);
+		// } );
+
+		$.ajax({
+			url: 'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenDataLis',
+			type: 'post',
+			dataType: 'json', // 預期從server接收的資料型態
+			contentType: 'application/json; charset=utf-8', // 要送到server的資料型態
+			data: {},
+			success: function (res) {
 				showData(res);
 			},
-			'json'
-		).fail(function () {
-			var element = '';
-			element += '<li class="noData">';
-			element += '<span>尚無資料</span>';
-			element += '</li>';
-			$('.patientUL').html(element);
+			error: function (error) {
+				var element = '';
+				element += '<li class="noData">';
+				element += '<span>尚無資料</span>';
+				element += '</li>';
+				$('.patientUL').html(element);
+			},
 		});
 	}
 
