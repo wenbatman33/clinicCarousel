@@ -22,10 +22,8 @@ $(function () {
   }
 
   function getData() {
-    $.get('./assets/json/data_02.json', {}, function (res) {
-    // $.post(baseUrl + "/Api/GetRegisteredButNotSeenDataList", {}, function (
-      res
-    ) {
+    $.get("./assets/json/data_02.json", {}, function (res) {
+      // $.post(baseUrl + "/Api/GetRegisteredButNotSeenDataList", {}, function (res ) {
       showData(res);
     }).fail(function () {
       var element = "";
