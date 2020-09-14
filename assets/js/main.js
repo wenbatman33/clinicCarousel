@@ -1,6 +1,4 @@
 $(function () {
-	var baseUrl = 'http://61.220.95.146:3000';
-	// var baseUrl = 'http://192.168.1.3:3000';
 	var roomDataList;
 	var roomDataLength;
 	var patientList;
@@ -17,7 +15,7 @@ $(function () {
 			// url: './assets/json/data_01.json',
 			// type: 'get',
 			// --------------------
-			url: 'http://61.220.95.146:3000/Api/GeteEmployeeScheduleDataList',
+			url: 'https://192.168.1.3:3000/Api/GeteEmployeeScheduleDataList',
 			data: JSON.stringify({}),
 			type: 'post',
 			// --------------------
@@ -40,7 +38,7 @@ $(function () {
 			// url: './assets/json/data_02.json',
 			// type: 'get',
 			// --------------------
-			url: 'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenDataList',
+			url: 'https://192.168.1.3:3000/Api/GetRegisteredButNotSeenDataList',
 			data: JSON.stringify({}),
 			type: 'post',
 			// --------------------
@@ -79,6 +77,10 @@ $(function () {
 				$('.department').html(roomDataList[j].SEC_SENAME);
 				$('.doctor').html(roomDataList[j].EMP_EMPNAME);
 				$('.clinic').html(roomDataList[j].ROM_RONAME);
+			} else {
+				$('.department').html('');
+				$('.doctor').html('休診中');
+				$('.clinic').html('');
 			}
 		}
 	}
@@ -120,6 +122,7 @@ $(function () {
 			loop(current);
 		}, loopTime);
 	}
+
 	function noPatient(num) {
 		// 沒有患者時的顯示方式 10秒後再取資料
 		var len = num + renderItems;
