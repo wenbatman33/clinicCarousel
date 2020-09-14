@@ -15,7 +15,7 @@ $(function () {
 			// url: './assets/json/data_01.json',
 			// type: 'get',
 			// --------------------
-			url: 'https://192.168.1.3:3000/Api/GeteEmployeeScheduleDataList',
+			url: 'http://192.168.1.3:3000/Api/GeteEmployeeScheduleDataList',
 			data: JSON.stringify({}),
 			type: 'post',
 			// --------------------
@@ -38,7 +38,7 @@ $(function () {
 			// url: './assets/json/data_02.json',
 			// type: 'get',
 			// --------------------
-			url: 'https://192.168.1.3:3000/Api/GetRegisteredButNotSeenDataList',
+			url: 'http://192.168.1.3:3000/Api/GetRegisteredButNotSeenDataList',
 			data: JSON.stringify({}),
 			type: 'post',
 			// --------------------
