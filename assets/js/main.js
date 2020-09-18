@@ -11,6 +11,7 @@ $(function() {
   var roomArray = [];
 
   function getRoomData() {
+    console.log('getRoomData');
     $.ajax({
       // --------------------
       url: './assets/json/data_01.json',
@@ -34,11 +35,31 @@ $(function() {
     });
   }
 
-  function getData() {
+  function breakTime() {
+    roomDataList = [];
+    roomDataLength = 0;
+    patientList = [];
+    patientAll = 0;
+    current = 0;
+    roomArray = [];
 
+    $('.department').html('');
+    $('.doctor').html('休診中');
+    $('.clinic').html('');
+
+    var element = '';
+    element += '<li class="noData">目前無人候診</li>';
+    $('.patientUL').html(element);
+    clearTimeout(timer);
+
+    // 三十秒輪播
+    setTimeout(() => {
+      getRoomData();
+    }, 30000);
   }
 
   function getData() {
+    console.log('getData');
     $.ajax({
       // --------------------
       url: './assets/json/data_02.json',
@@ -70,41 +91,42 @@ $(function() {
     roomArray = [];
     var currentTime = dayjs().format('YYYY/MM/DD HH:mm:ss');
     var today = dayjs().format('YYYY/MM/DD');
+    var sTime, eTime;
+
     for (j = 0; j < roomDataLength; j++) {
-      var sTime = today + ' ' + roomDataList[j].SHI_TIME_S + ':00';
-      var eTime = today + ' ' + roomDataList[j].SHI_TIME_E + ':59';
+      sTime = today + ' ' + roomDataList[j].SHI_TIME_S;
+      eTime = today + ' ' + roomDataList[j].SHI_TIME_E;
       if (dayjs(currentTime).isAfter(dayjs(sTime)) && dayjs(currentTime).isBefore(dayjs(eTime))) {
         roomArray.push(1);
-        var tiemGap = dayjs(eTime).valueOf() - Date.now();
-        // 緩衝65秒
-        tiemGap += 65000;
-        setTimeout(() => {
-          getRoomData();
-        }, tiemGap);
         $('.department').html(roomDataList[j].SEC_SENAME);
         console.log(roomDataList[j].SEC_SENAME);
         $('.doctor').html(roomDataList[j].EMP_EMPNAME);
         $('.clinic').html(roomDataList[j].ROM_RONAME);
+        var now = dayjs();
+        var endTime = dayjs(eTime);
+        var gapTime = endTime.diff(now);
+        console.log(gapTime);
+
+        // //////////////////////////
+        getData()
+        // //////////////////////////
+        setTimeout(() => {
+          console.log('rest');
+          getRoomData();
+        }, gapTime + 1000);
+
       } else {
         roomArray.push(0);
       }
     }
     if (roomArray.indexOf(1) < 0) {
-      $('.department').html('');
-      $('.doctor').html('休診中');
-      $('.clinic').html('');
-      // console.log('休診中');
-      tiemGap += 65000;
-      setTimeout(() => {
-        getRoomData();
-      }, tiemGap);
+      breakTime();
     }
   }
 
   function showData(res) {
     patientList = res.data;
     patientAll = res.data.length;
-
     if (patientAll > 0) {
       loop(current);
     } else {
@@ -124,13 +146,13 @@ $(function() {
       }
     }
     $('.patientUL').html(element);
+    console.log('current: ' + current);
+    console.log('patientAll: ' + patientAll);
     if (current >= patientAll) {
-      current = 0;
       //  讀取列表尾端時結重新取資料
-      timer = setTimeout(() => {
-        getData();
-        clearTimeout(timer);
-      }, loopTime);
+      current = 0;
+      clearTimeout(timer);
+      getData();
     } else {
       current += renderItems;
     }
@@ -141,7 +163,6 @@ $(function() {
 
   function noPatient(num) {
     // 沒有患者時的顯示方式 10秒後再取資料
-    var len = num + renderItems;
     var element = '';
     element += '<li class="noData">目前無人候診</li>';
     $('.patientUL').html(element);
@@ -151,6 +172,5 @@ $(function() {
     }, 10000);
   }
 
-  getData();
   getRoomData();
 });
