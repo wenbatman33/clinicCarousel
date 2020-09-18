@@ -17,7 +17,8 @@ $(function () {
 			// --------------------
 			//  10.0.101.132
 			// 192.168.1.3
-			url: 'http://10.0.101.132:3000/Api/GeteEmployeeScheduleDataList',
+			// url: 'http://10.0.101.132:3000/Api/GeteEmployeeScheduleDataList',
+			url: 'http://192.168.1.3:3000/Api/GeteEmployeeScheduleDataList',
 			data: JSON.stringify({}),
 			type: 'post',
 			// --------------------
@@ -43,7 +44,8 @@ $(function () {
 			// 10.0.101.132
 			// 192.168.1.3
 
-			url: 'http://10.0.101.132:3000/Api/GetRegisteredButNotSeenDataList',
+			// url: 'http://10.0.101.132:3000/Api/GetRegisteredButNotSeenDataList',
+			url: 'http://192.168.1.3:3000/Api/GetRegisteredButNotSeenDataList',
 			data: JSON.stringify({}),
 			type: 'post',
 			// --------------------
@@ -117,7 +119,7 @@ $(function () {
 		for (i = num; i < persons; i++) {
 			if (patientList[i]) {
 				element += '<li class="patientItem">';
-				element += '<span class="id">' + patientList[i].OCB_ROOMNO + '</span>';
+				element += '<span class="id">' + patientList[i].OCB_VISITNO + '</span>';
 				element += '<span class="name">' + patientList[i].PT_PATNAME + '</span>';
 				element += '</li>';
 			}
