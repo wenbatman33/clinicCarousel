@@ -1,9 +1,1 @@
-{
-	"data": [
-		{ "SCD_VISITDT": "20200911", "SHI_SHIFTNO": "1", "SHI_EASYNAME": "早上", "SEC_SENAME": "耳鼻喉科", "SCD_ROOMNO": "0001", "ROM_RONAME": "一診", "EMP_EMPNAME": "張維寬", "SHI_TIME_S": "00:01", "SHI_TIME_E": "13:00" },
-		{ "SCD_VISITDT": "20200911", "SHI_SHIFTNO": "2", "SHI_EASYNAME": "下午", "SEC_SENAME": "耳鼻喉科", "SCD_ROOMNO": "0001", "ROM_RONAME": "一診", "EMP_EMPNAME": "陳佑誠", "SHI_TIME_S": "13:01", "SHI_TIME_E": "18:29" },
-		{ "SCD_VISITDT": "20200911", "SHI_SHIFTNO": "3", "SHI_EASYNAME": "夜診", "SEC_SENAME": "耳鼻喉科", "SCD_ROOMNO": "0001", "ROM_RONAME": "一診", "EMP_EMPNAME": "陳佑誠", "SHI_TIME_S": "18:30", "SHI_TIME_E": "22:30" }
-	],
-	"httpStatus": 0,
-	"code": 0
-}
+{"data":[{"SCD_VISITDT":"20200918","SHI_SHIFTNO":"1","SHI_EASYNAME":"早上","SEC_SENAME":"耳鼻喉科","SCD_ROOMNO":"0001","ROM_RONAME":"一診","EMP_EMPNAME":"張維寬","SHI_TIME_S":"00:01","SHI_TIME_E":"13:00"},{"SCD_VISITDT":"20200918","SHI_SHIFTNO":"2","SHI_EASYNAME":"下午","SEC_SENAME":"耳鼻喉科","SCD_ROOMNO":"0001","ROM_RONAME":"一診","EMP_EMPNAME":"陳佑誠","SHI_TIME_S":"13:01","SHI_TIME_E":"18:29"},{"SCD_VISITDT":"20200918","SHI_SHIFTNO":"3","SHI_EASYNAME":"夜診","SEC_SENAME":"耳鼻喉科","SCD_ROOMNO":"0001","ROM_RONAME":"一診","EMP_EMPNAME":"陳佑誠","SHI_TIME_S":"18:30","SHI_TIME_E":"22:30"}],"httpStatus":0,"code":0}
