@@ -14,28 +14,49 @@ body {
   text-align: center;
   height: 40px;
   line-height: 40px;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #fff;
   background: #14d2da;
-  letter-spacing: 8px; }
+  letter-spacing: 6px;
+  padding: 0 10px; }
 
 .doctor {
   height: 40px;
   line-height: 40px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #fff;
   text-align: center;
   background: #13b4b8;
-  letter-spacing: 8px; }
+  letter-spacing: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .doctor .doctorName {
+    padding: 0 10px; }
+  .doctor .doctorJobTitle {
+    padding: 0 10px; }
 
 .clinic {
   height: 40px;
   line-height: 40px;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #fff;
   text-align: center;
   background: #109292;
-  letter-spacing: 8px; }
+  letter-spacing: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .clinic .clinicName {
+    padding: 0 10px; }
+  .clinic .roomName {
+    padding: 0 10px; }
 
 .patient {
   color: #fff;

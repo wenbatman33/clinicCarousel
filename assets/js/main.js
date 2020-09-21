@@ -100,8 +100,10 @@ $(function() {
         roomArray.push(1);
         $('.department').html(roomDataList[j].SEC_SENAME);
         console.log(roomDataList[j].SEC_SENAME);
-        $('.doctor').html(roomDataList[j].EMP_EMPNAME);
-        $('.clinic').html(roomDataList[j].ROM_RONAME);
+        $('.doctorName').html(roomDataList[j].EMP_EMPNAME);
+        $('.doctorJobTitle').html('醫師');
+        $('.clinicName').html(roomDataList[j].SHI_EASYNAME);
+        $('.roomName').html(roomDataList[j].ROM_RONAME);
         var now = dayjs();
         var endTime = dayjs(eTime);
         var gapTime = endTime.diff(now);
