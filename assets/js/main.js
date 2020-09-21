@@ -9,6 +9,9 @@ $(function() {
   var timer;
   var loopTime = 5000;
   var roomArray = [];
+  var roomList_1 = [];
+  var roomList_2 = [];
+  var roomList_3 = [];
 
   function getRoomData() {
     console.log('getRoomData');
@@ -129,6 +132,21 @@ $(function() {
   function showData(res) {
     patientList = res.data;
     patientAll = res.data.length;
+    roomList_1 = [];
+    roomList_2 = [];
+    roomList_3 = [];
+    patientList.forEach(element => {
+      if (element.SHI_SHIFTNO == 1) {
+        roomList_1.push(element);
+      } else if (element.SHI_SHIFTNO == 2) {
+        roomList_2.push(element);
+      } else if (element.SHI_SHIFTNO == 3) {
+        roomList_3.push(element);
+      }
+    });
+    console.log(roomList_1);
+    console.log(roomList_2);
+    console.log(roomList_3);
     if (patientAll > 0) {
       loop(current);
     } else {
