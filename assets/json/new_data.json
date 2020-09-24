@@ -1,0 +1,107 @@
+{
+	"data": [
+		{
+			"SHI_EASYNAME": "下午",
+			"SEC_SENAME": "順誠耳鼻喉科診",
+			"ROM_RONAME": "一診",
+			"EMP_EMPNAME": "張維寬",
+			"pat": [
+				{
+					"PT_PATNAME": "王O文",
+					"PT_SEX": "男",
+					"OCB_VISITNO": "0001"
+				},
+				{
+					"PT_PATNAME": "陳O豪",
+					"PT_SEX": "男",
+					"OCB_VISITNO": "0002"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0003"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0004"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0005"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0006"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0007"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0008"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0009"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0010"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0011"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0012"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0013"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0014"
+				},
+				{
+					"PT_PATNAME": "彭O秋",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0015"
+				}
+			]
+		},
+		{
+			"SHI_EASYNAME": "下午",
+			"SEC_SENAME": "順誠耳鼻喉科診",
+			"ROM_RONAME": "二診",
+			"EMP_EMPNAME": "宋文彬",
+			"pat": [
+				{
+					"PT_PATNAME": "賴O德",
+					"PT_SEX": "男",
+					"OCB_VISITNO": "0001"
+				},
+				{
+					"PT_PATNAME": "李O慧",
+					"PT_SEX": "女",
+					"OCB_VISITNO": "0002"
+				}
+			]
+		}
+	],
+	"httpStatus": 0,
+	"code": 0
+}

@@ -1,140 +1,127 @@
 $(function () {
-	var roomDataList;
-	var roomDataLength;
-	var patientList;
+	var ROOM_NUM = 0;
+	var switchRoom = 0;
+	var currentPatNumber = [];
 
-	var patientAll = 0;
-	var current = 0;
+	var rooms = 0;
+	var roomList = [];
+	var patLength = [];
+	var maxLength = 0;
 	var renderItems = 5;
-	var timer;
+	var showInfo = {};
+	var timer = '';
 	var loopTime = 5000;
 
-	function getRoomData() {
-		$.ajax({
-			// --------------------
-			// url: './assets/json/data_01.json',
-			// type: 'get',
-			// --------------------
-			url: 'https://192.168.1.3:3000/Api/GeteEmployeeScheduleDataList',
-			data: JSON.stringify({}),
-			type: 'post',
-			// --------------------
-			dataType: 'json',
-			contentType: 'application/json;charset=utf-8',
-			success: function (returnData) {
-				showRoomData(returnData);
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-				$('.department').html('尚無資料');
-				$('.doctor').html('尚無資料');
-				$('.clinic').html('尚無資料');
-			},
-		});
+	function reSetVar() {
+		ROOM_NUM = 0;
+		switchRoom = 0;
+		currentPatNumber = [];
+		rooms = 0;
+		roomList = [];
+		patLength = [];
+		maxLength = 0;
+		showInfo = {};
 	}
-
-	function getData() {
-		$.ajax({
-			// --------------------
-			// url: './assets/json/data_02.json',
-			// type: 'get',
-			// --------------------
-			url: 'https://192.168.1.3:3000/Api/GetRegisteredButNotSeenDataList',
-			data: JSON.stringify({}),
-			type: 'post',
-			// --------------------
-			dataType: 'json',
-			contentType: 'application/json;charset=utf-8',
-			success: function (returnData) {
-				showData(returnData);
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-				var element = '';
-				element += '<li class="noData">';
-				element += '<span>尚無資料</span>';
-				element += '</li>';
-				$('.patientUL').html(element);
-			},
-		});
-	}
-
-	function showRoomData(res) {
-		roomDataList = res.data;
-		roomDataLength = res.data.length;
-		var currentTime = dayjs().format('YYYY/MM/DD HH:mm:ss');
-		var today = dayjs().format('YYYY/MM/DD');
-
-		for (j = 0; j < roomDataLength; j++) {
-			var sTime = today + ' ' + roomDataList[j].SHI_TIME_S + ':00';
-			var eTime = today + ' ' + roomDataList[j].SHI_TIME_E + ':59';
-			if (dayjs(currentTime).isAfter(dayjs(sTime)) && dayjs(currentTime).isBefore(dayjs(eTime))) {
-				var tiemGap = dayjs(eTime).valueOf() - Date.now();
-				// 緩衝65秒
-				tiemGap += 65000;
-				setTimeout(() => {
-					getRoomData();
-				}, tiemGap);
-
-				$('.department').html(roomDataList[j].SEC_SENAME);
-				$('.doctor').html(roomDataList[j].EMP_EMPNAME);
-				$('.clinic').html(roomDataList[j].ROM_RONAME);
-			} else {
-				$('.department').html('');
-				$('.doctor').html('休診中');
-				$('.clinic').html('');
-			}
-		}
-	}
-
-	function showData(res) {
-		patientList = res.data;
-		patientAll = res.data.length;
-
-		if (patientAll > 0) {
-			loop(current);
-		} else {
-			noPatient();
-		}
-	}
-
-	function loop(num) {
-		var persons = num + renderItems;
+	function noneData() {
+		// 沒有患者時的顯示方式 30秒後再取資料
+		console.log('目前休診中');
 		var element = '';
-		for (i = num; i < persons; i++) {
-			if (patientList[i]) {
-				element += '<li class="patientItem">';
-				element += '<span class="id">' + patientList[i].OCB_ROOMNO + '</span>';
-				element += '<span class="name">' + patientList[i].PT_PATNAME + '</span>';
-				element += '</li>';
-			}
-		}
-		$('.patientUL').html(element);
-		if (current >= patientAll) {
-			current = 0;
-			//  讀取列表尾端時結重新取資料
-			timer = setTimeout(() => {
-				getData();
-				clearTimeout(timer);
-			}, loopTime);
-		} else {
-			current += renderItems;
-		}
-		timer = setTimeout(() => {
-			loop(current);
-		}, loopTime);
-	}
-
-	function noPatient(num) {
-		// 沒有患者時的顯示方式 10秒後再取資料
-		var len = num + renderItems;
-		var element = '';
-		element += '<li class="noData">目前無人候診</li>';
+		element += '<li class="noData">目前休診中</li>';
 		$('.patientUL').html(element);
 		timer = setTimeout(() => {
 			getData();
 			clearTimeout(timer);
-		}, 10000);
+		}, 30000);
 	}
 
+	// --------------------
+	function getData() {
+		reSetVar();
+		$.ajax({
+			// --------------------
+			// url: './assets/json/new_data.json',
+			// type: 'get',
+			// --------------------
+			// url: 'http://10.0.101.132:3000/Api/GeteEmployeeScheduleDataList',
+			// url: 'http://192.168.1.3:3000/Api/GeteEmployeeScheduleDataList',
+			url: 'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenByRoomDataList',
+			data: JSON.stringify({}),
+			type: 'post',
+			// --------------------
+			dataType: 'json',
+			contentType: 'application/json;charset=utf-8',
+			success: function (res) {
+				if (res.data.length > 0) {
+					init(res);
+				} else {
+					noneData();
+				}
+			},
+			error: function (xhr, ajaxOptions, thrownError) {},
+		});
+	}
+	function init(res) {
+		roomList = res.data;
+		rooms = roomList.length;
+		roomList.forEach((element) => {
+			patLength.push(element.pat.length);
+			currentPatNumber.push(0);
+		});
+		maxLength = Math.max.apply(null, patLength);
+		setup();
+	}
+	function setup() {
+		loop();
+	}
+
+	function loop() {
+		switchRoom = ROOM_NUM % rooms;
+		showInfo.room = roomList[switchRoom];
+		showInfo.pat = [];
+		// 依序讀取各診間看診者名單
+		for (var i = 0; i < renderItems; i++) {
+			var temp = roomList[switchRoom].pat[currentPatNumber[switchRoom] + i];
+			if (temp) {
+				showInfo.pat.push(temp);
+			}
+		}
+		showInfoData();
+		checkNextStep();
+	}
+	function checkNextStep() {
+		currentPatNumber[switchRoom] += 5;
+		ROOM_NUM += 1;
+		if (currentPatNumber[switchRoom] > patLength[switchRoom]) {
+			currentPatNumber[switchRoom] = 0;
+		}
+		if (currentPatNumber[switchRoom] >= maxLength && ROOM_NUM >= roomList.length) {
+			clearTimeout(timer);
+			console.log('輪播結束點');
+			getData();
+		} else {
+			timer = setTimeout(() => {
+				loop();
+			}, loopTime);
+		}
+	}
+	function showInfoData() {
+		$('.department').html(showInfo.room.SEC_SENAME);
+		$('.doctorName').html(showInfo.room.EMP_EMPNAME);
+		$('.doctorJobTitle').html('醫師');
+		$('.clinicName').html(showInfo.room.SHI_EASYNAME);
+		$('.roomName').html(showInfo.room.ROM_RONAME);
+		var element = '';
+		for (var j = 0; j < showInfo.pat.length; j++) {
+			if (showInfo.pat[j]) {
+				element += '<li class="patientItem">';
+				element += '<span class="id">' + showInfo.pat[j].OCB_VISITNO + '</span>';
+				element += '<span class="name">' + showInfo.pat[j].PT_PATNAME + '</span>';
+				element += '</li>';
+			}
+		}
+		$('.patientUL').html(element);
+	}
+	// /////////////
 	getData();
-	getRoomData();
+	// /////////////
 });
