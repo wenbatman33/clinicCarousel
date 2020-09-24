@@ -1,5 +1,17 @@
-{
-	"data": [],
-	"httpStatus": 0,
-	"code": 0
+{ 
+	"Data": [
+		{ 
+			"SCD_VISITDT": "20200924", 
+			"SHI_SHIFTNO": "2", 
+			"SHI_EASYNAME": "下午", 
+			"SEC_SENAME": "耳鼻喉科", 
+			"SCD_ROOMNO": "0001", 
+			"ROM_RONAME": "一診", 
+			"EMP_EMPNAME": "張維寬", 
+			"SHI_TIME_S": "13:01", 
+			"SHI_TIME_E": "18:29" 
+			}
+		], 
+	"HttpStatus": 0, 
+	"Code": 0 
 }
