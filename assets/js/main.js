@@ -1,26 +1,23 @@
 $(function () {
-	var ROOM_NUM = 0;
-	var switchRoom = 0;
-	var currentPatNumber = [];
-
-	var rooms = 0;
-	var roomList = [];
-	var patLength = [];
-	var maxLength = 0;
+	var timer;
 	var renderItems = 5;
-	var showInfo = {};
-	var timer = '';
 	var loopTime = 5000;
-
+	//////////////////////////
+	var allRoom = 0;
+	var allRoomData = [];
+	var roomNum = 0;
+	var patNum = 0;
+	//////////////////////////
+	var currentRoomInfo;
+	var currentPatList;
+	var tempPatList = [];
 	function reSetVar() {
-		ROOM_NUM = 0;
-		switchRoom = 0;
-		currentPatNumber = [];
-		rooms = 0;
-		roomList = [];
-		patLength = [];
-		maxLength = 0;
-		showInfo = {};
+		allRoom = 0;
+		allRoomData = [];
+		roomNum = 0;
+		patNum = 0;
+		currentRoomInfo = [];
+		currentPatList = [];
 	}
 	function noneData() {
 		// 沒有患者時的顯示方式 30秒後再取資料
@@ -61,61 +58,56 @@ $(function () {
 		});
 	}
 	function init(res) {
-		roomList = res.data;
-		rooms = roomList.length;
-		roomList.forEach((element) => {
-			patLength.push(element.pat.length);
-			currentPatNumber.push(0);
-		});
-		maxLength = Math.max.apply(null, patLength);
-		setup();
-	}
-	function setup() {
-		loop();
+		allRoomData = res.data;
+		allRoom = allRoomData.length;
+		roomLoop();
 	}
 
-	function loop() {
-		switchRoom = ROOM_NUM % rooms;
-		showInfo.room = roomList[switchRoom];
-		showInfo.pat = [];
-		// 依序讀取各診間看診者名單
-		for (var i = 0; i < renderItems; i++) {
-			var temp = roomList[switchRoom].pat[currentPatNumber[switchRoom] + i];
-			if (temp) {
-				showInfo.pat.push(temp);
-			}
-		}
+	function roomLoop() {
+		// //////////////////////////////////////////////////
 		showInfoData();
-		checkNextStep();
-	}
-	function checkNextStep() {
-		currentPatNumber[switchRoom] += 5;
-		ROOM_NUM += 1;
-		if (currentPatNumber[switchRoom] > patLength[switchRoom]) {
-			currentPatNumber[switchRoom] = 0;
+		// //////////////////////////////////////////////////
+		patNum += 5;
+		// ////////
+		if (patNum > currentPatList.length) {
+			patNum = 0;
+			roomNum += 1;
 		}
-		if (currentPatNumber[switchRoom] >= maxLength && ROOM_NUM >= roomList.length) {
-			clearTimeout(timer);
-			console.log('輪播結束點');
-			getData();
+
+		if (roomNum >= allRoom) {
+			roomNum = 0;
+			timer = setTimeout(() => {
+				getData();
+			}, loopTime);
 		} else {
 			timer = setTimeout(() => {
-				loop();
+				roomLoop();
 			}, loopTime);
 		}
 	}
 	function showInfoData() {
-		$('.department').html(showInfo.room.SEC_SENAME);
-		$('.doctorName').html(showInfo.room.EMP_EMPNAME);
+		currentRoomInfo = allRoomData[roomNum];
+		currentPatList = allRoomData[roomNum].pat;
+		// //////////////////////////////////////////////////
+		$('.department').html(currentRoomInfo.SEC_SENAME);
+		$('.doctorName').html(currentRoomInfo.EMP_EMPNAME);
 		$('.doctorJobTitle').html('醫師');
-		$('.clinicName').html(showInfo.room.SHI_EASYNAME);
-		$('.roomName').html(showInfo.room.ROM_RONAME);
+		$('.clinicName').html(currentRoomInfo.SHI_EASYNAME);
+		$('.roomName').html(currentRoomInfo.ROM_RONAME);
+		// //////////////////////////////////////////////////
 		var element = '';
-		for (var j = 0; j < showInfo.pat.length; j++) {
-			if (showInfo.pat[j]) {
+		tempPatList = [];
+		for (var i = 0; i < renderItems; i++) {
+			var temp = currentPatList[patNum + i];
+			if (temp) {
+				tempPatList.push(temp);
+			}
+		}
+		for (var j = 0; j < tempPatList.length; j++) {
+			if (tempPatList[j]) {
 				element += '<li class="patientItem">';
-				element += '<span class="id">' + showInfo.pat[j].OCB_VISITNO + '</span>';
-				element += '<span class="name">' + showInfo.pat[j].PT_PATNAME + '</span>';
+				element += '<span class="id">' + tempPatList[j].OCB_VISITNO + '</span>';
+				element += '<span class="name">' + tempPatList[j].PT_PATNAME + '</span>';
 				element += '</li>';
 			}
 		}
