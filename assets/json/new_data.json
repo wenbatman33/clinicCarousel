@@ -5,7 +5,7 @@
 			"SEC_SENAME": "順誠耳鼻喉科診",
 			"ROM_RONAME": "一診",
 			"EMP_EMPNAME": "張維寬",
-			"pat": [
+			"PAT": [
 				{
 					"PT_PATNAME": "王O文",
 					"PT_SEX": "男",
@@ -93,7 +93,7 @@
 			"SEC_SENAME": "順誠耳鼻喉科診",
 			"ROM_RONAME": "二診",
 			"EMP_EMPNAME": "宋文彬",
-			"pat": [
+			"PAT": [
 				{
 					"PT_PATNAME": "賴O德",
 					"PT_SEX": "男",

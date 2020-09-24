@@ -89,7 +89,7 @@ $(function () {
 	}
 	function showInfoData() {
 		currentRoomInfo = allRoomData[roomNum];
-		currentPatList = allRoomData[roomNum].pat;
+		currentPatList = allRoomData[roomNum].PAT;
 		// //////////////////////////////////////////////////
 		$('.department').html(currentRoomInfo.SEC_SENAME);
 		$('.doctorName').html(currentRoomInfo.EMP_EMPNAME);
