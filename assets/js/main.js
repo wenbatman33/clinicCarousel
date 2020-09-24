@@ -36,14 +36,14 @@ $(function () {
 		reSetVar();
 		$.ajax({
 			// --------------------
-			url: './assets/json/new_data.json',
-			type: 'get',
+			// url: './assets/json/new_data.json',
+			// type: 'get',
 			// --------------------
-			// url: 'http://10.0.101.132:3000/Api/GeteEmployeeScheduleDataList',
 			// url: 'http://192.168.1.3:3000/Api/GeteEmployeeScheduleDataList',
 			// url: 'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenByRoomDataList',
-			// data: JSON.stringify({}),
-			// type: 'post',
+			url: 'http://10.0.101.132:3000/Api/GeteEmployeeScheduleDataList',
+			data: JSON.stringify({}),
+			type: 'post',
 			// --------------------
 			dataType: 'json',
 			contentType: 'application/json;charset=utf-8',
@@ -54,7 +54,9 @@ $(function () {
 					noneData();
 				}
 			},
-			error: function (xhr, ajaxOptions, thrownError) {},
+			error: function (xhr, ajaxOptions, thrownError) {
+				noneData();
+			},
 		});
 	}
 	function init(res) {
