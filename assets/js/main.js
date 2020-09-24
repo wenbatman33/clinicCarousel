@@ -36,14 +36,14 @@ $(function () {
 		reSetVar();
 		$.ajax({
 			// --------------------
-			// url: './assets/json/new_data.json',
-			// type: 'get',
+			url: './assets/json/new_data.json',
+			type: 'get',
 			// --------------------
 			// url: 'http://192.168.1.3:3000/Api/GeteEmployeeScheduleDataList',
 			// url: 'http://61.220.95.146:3000/Api/GetRegisteredButNotSeenByRoomDataList',
-			url: 'http://10.0.101.132:3000/Api/GeteEmployeeScheduleDataList',
-			data: JSON.stringify({}),
-			type: 'post',
+			// url: 'http://10.0.101.132:3000/Api/GeteEmployeeScheduleDataList',
+			// data: JSON.stringify({}),
+			// type: 'post',
 			// --------------------
 			dataType: 'json',
 			contentType: 'application/json;charset=utf-8',
@@ -89,7 +89,9 @@ $(function () {
 	}
 	function showInfoData() {
 		currentRoomInfo = allRoomData[roomNum];
-		currentPatList = allRoomData[roomNum].PAT;
+		if (allRoomData[roomNum].PAT) {
+			currentPatList = allRoomData[roomNum].PAT;
+		}
 		// //////////////////////////////////////////////////
 		$('.department').html(currentRoomInfo.SEC_SENAME);
 		$('.doctorName').html(currentRoomInfo.EMP_EMPNAME);
@@ -99,21 +101,31 @@ $(function () {
 		// //////////////////////////////////////////////////
 		var element = '';
 		tempPatList = [];
-		for (var i = 0; i < renderItems; i++) {
-			var temp = currentPatList[patNum + i];
-			if (temp) {
-				tempPatList.push(temp);
+		if (currentPatList.length > 0) {
+			for (var i = 0; i < renderItems; i++) {
+				var temp = currentPatList[patNum + i];
+				if (temp) {
+					tempPatList.push(temp);
+				}
 			}
-		}
-		for (var j = 0; j < tempPatList.length; j++) {
-			if (tempPatList[j]) {
-				element += '<li class="patientItem">';
-				element += '<span class="id">' + tempPatList[j].OCB_VISITNO + '</span>';
-				element += '<span class="name">' + tempPatList[j].PT_PATNAME + '</span>';
-				element += '</li>';
+
+			if (tempPatList.length) console.log(tempPatList.length);
+			for (var j = 0; j < tempPatList.length; j++) {
+				if (tempPatList[j]) {
+					element += '<li class="patientItem">';
+					element += '<span class="id">' + tempPatList[j].OCB_VISITNO + '</span>';
+					element += '<span class="name">' + tempPatList[j].PT_PATNAME + '</span>';
+					element += '</li>';
+				}
 			}
+			$('.patientUL').html(element);
+		} else {
+			console.log('oooooo');
+			element += '<li class="patientItem">';
+			element += '<li class="noData">目前無人候診</li>';
+			element += '</li>';
+			$('.patientUL').html(element);
 		}
-		$('.patientUL').html(element);
 	}
 	// /////////////
 	getData();
