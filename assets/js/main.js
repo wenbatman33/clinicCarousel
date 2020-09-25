@@ -21,7 +21,6 @@ $(function () {
 	}
 	function noneData() {
 		// 沒有患者時的顯示方式 30秒後再取資料
-		console.log('目前休診中');
 		var element = '';
 		element += '<li class="noData">目前休診中</li>';
 		$('.patientUL').html(element);
@@ -110,8 +109,6 @@ $(function () {
 					tempPatList.push(temp);
 				}
 			}
-
-			if (tempPatList.length) console.log(tempPatList.length);
 			for (var j = 0; j < tempPatList.length; j++) {
 				if (tempPatList[j]) {
 					element += '<li class="patientItem">';
@@ -122,7 +119,6 @@ $(function () {
 			}
 			$('.patientUL').html(element);
 		} else {
-			console.log('oooooo');
 			element += '<li class="patientItem">';
 			element += '<li class="noData">目前無人候診</li>';
 			element += '</li>';
