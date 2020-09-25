@@ -36,7 +36,7 @@ $(function () {
 		reSetVar();
 		$.ajax({
 			// --------------------
-			// url: './assets/json/new_data2.json',
+			// url: './assets/json/new_data3.json',
 			// type: 'get',
 			// --------------------
 			// url: 'http://192.168.1.3:3000/Api/GetRegisteredButNotSeenByRoomDataList',
@@ -91,6 +91,8 @@ $(function () {
 		currentRoomInfo = allRoomData[roomNum];
 		if (allRoomData[roomNum].PAT) {
 			currentPatList = allRoomData[roomNum].PAT;
+		} else {
+			currentPatList = [];
 		}
 		// //////////////////////////////////////////////////
 		$('.department').html(currentRoomInfo.SEC_SENAME);

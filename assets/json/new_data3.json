@@ -1,0 +1,28 @@
+{
+	"Data": [
+		{
+			"SHI_EASYNAME": "早上",
+			"SEC_SENAME": "耳鼻喉科",
+			"ROM_RONAME": "一診",
+			"EMP_EMPNAME": "張維寬",
+			"PAT": [
+				{ "PT_PATNAME": "測O2", "PT_SEX": "女", "OCB_VISITNO": "0001" },
+				{ "PT_PATNAME": "楊O宇", "PT_SEX": "男", "OCB_VISITNO": "0002" },
+				{ "PT_PATNAME": "李O礎", "PT_SEX": "男", "OCB_VISITNO": "0003" },
+				{ "PT_PATNAME": "李O霆", "PT_SEX": "男", "OCB_VISITNO": "0004" },
+				{ "PT_PATNAME": "江O劭", "PT_SEX": "女", "OCB_VISITNO": "0005" },
+				{ "PT_PATNAME": "邱O舜", "PT_SEX": "女", "OCB_VISITNO": "0007" },
+				{ "PT_PATNAME": "陳O秋", "PT_SEX": "女", "OCB_VISITNO": "0009" },
+				{ "PT_PATNAME": "蔡O雯", "PT_SEX": "女", "OCB_VISITNO": "0011" }
+			]
+		},
+		{
+			"SHI_EASYNAME": "早上",
+			"SEC_SENAME": "耳鼻喉科",
+			"ROM_RONAME": "二診",
+			"EMP_EMPNAME": "測試醫師"
+		}
+	],
+	"HttpStatus": 0,
+	"Code": 0
+}
